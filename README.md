@@ -1,19 +1,20 @@
-# MEBOW Orientation OT - Clean C4 (minimum)
+````markdown
+# MEBOW Orientation OT - Clean C4 (Minimum)
 
-Version minimale du projet, prete pour GitHub, contenant uniquement le pipeline coeur:
-- entrainement (`train_main.py`)
+Minimal version of the project, ready for GitHub, containing only the core pipeline:
+- training (`train_main.py`)
 - evaluation (`run_eval_checkpoint.py` / `--eval_only`)
-- modules essentiels (`config`, `data`, `model`, `loss`, `trainer`, `evaluator`, `utils`)
-- composant hermitien (`complex_embedding`)
-- fichier MEBOW requis par l'estimateur d'orientation (`third_party/mebow_official/lib/models/pose_hrnet.py`)
+- essential modules (`config`, `data`, `model`, `loss`, `trainer`, `evaluator`, `utils`)
+- Hermitian component (`complex_embedding`)
+- MEBOW file required by the orientation estimator (`third_party/mebow_official/lib/models/pose_hrnet.py`)
 
-## 1) Prerequis
+## 1) Requirements
 
-- Python 3.10 ou 3.11
-- GPU NVIDIA recommande (CPU possible mais lent)
-- Dataset MARS (ou format equivalent)
+- Python 3.10 or 3.11
+- NVIDIA GPU recommended; CPU is possible but slow
+- MARS dataset, or an equivalent format
 
-Structure attendue:
+Expected structure:
 
 ```text
 DATA_ROOT/
@@ -25,11 +26,11 @@ DATA_ROOT/
     tracks_train_info.mat
     tracks_test_info.mat
     query_IDX.mat
-```
+````
 
 ## 2) Installation
 
-1. Creer l'environnement
+1. Create the environment
 
 ```powershell
 python -m venv .venv
@@ -37,59 +38,62 @@ python -m venv .venv
 python -m pip install --upgrade pip setuptools wheel
 ```
 
-2. Installer PyTorch (selon ta machine):
-https://pytorch.org/get-started/locally/
+2. Install PyTorch according to your machine:
+   [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/)
 
-3. Installer les dependances
+3. Install the dependencies
 
 ```powershell
 pip install -r requirements.txt
 ```
 
-## 3) Fichier externe requis (MEBOW checkpoint)
+## 3) Required External File: MEBOW Checkpoint
 
-Ce depot minimal ne contient pas les poids pre-entraines MEBOW.
+This minimal repository does not include the pre-trained MEBOW weights.
 
-Tu dois placer un checkpoint HBOE ici:
+You must place an HBOE checkpoint here:
 
 ```text
 third_party/mebow_official/models/model_hboe.pth
 ```
 
-Sans ce fichier, les modes qui utilisent `film_orientation_source="stripe_estimator"` echoueront.
+Without this file, modes that use `film_orientation_source="stripe_estimator"` will fail.
 
-## 4) Commandes principales
+## 4) Main Commands
 
-Entrainement EXP5 C4:
+EXP5 C4 training:
 
 ```powershell
 python train_main.py --root D:\datasets\MARS --preset EXP5_FiLM_Hermitian
 ```
 
-Evaluation seule:
+Evaluation only:
 
 ```powershell
 python train_main.py --root D:\datasets\MARS --preset EXP5_FiLM_Hermitian --eval_only --checkpoint runs_EXP5_FiLM_Hermitian_C4/best_model.pth
 ```
 
-## 5) Contenu conserve (strict minimum)
+## 5) Preserved Content: Strict Minimum
 
-- `README.md`
-- `requirements.txt`
-- `.gitignore`
-- `config_optimized.py`
-- `data_optimized.py`
-- `evaluator.py`
-- `loss_optimized.py`
-- `model_optimized.py`
-- `run_eval_checkpoint.py`
-- `train_main.py`
-- `trainer.py`
-- `utils_optimized.py`
-- `complex_embedding/`
-- `third_party/mebow_official/lib/models/pose_hrnet.py`
+* `README.md`
+* `requirements.txt`
+* `.gitignore`
+* `config_optimized.py`
+* `data_optimized.py`
+* `evaluator.py`
+* `loss_optimized.py`
+* `model_optimized.py`
+* `run_eval_checkpoint.py`
+* `train_main.py`
+* `trainer.py`
+* `utils_optimized.py`
+* `complex_embedding/`
+* `third_party/mebow_official/lib/models/pose_hrnet.py`
 
 ## 6) Notes
 
-- Le preset principal reste `EXP5_FiLM_Hermitian` avec `C_stripes=4` et `R_rows=4`.
-- Les scripts de demo, figures, analyses et artefacts lourds ont ete retires volontairement.
+* The main preset remains `EXP5_FiLM_Hermitian`, with `C_stripes=4` and `R_rows=4`.
+* Demo scripts, figures, analyses, and heavy artifacts were intentionally removed.
+
+```
+```
