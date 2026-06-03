@@ -1,0 +1,9 @@
+# Install torch/torchvision from https://pytorch.org/get-started/locally/ first.
+torch>=2.1
+torchvision>=0.16
+
+# Core dependencies used by the minimal training/evaluation pipeline
+numpy>=1.23,<3
+scipy>=1.10
+pillow>=9.5
+torchreid>=0.2.5
